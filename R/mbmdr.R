@@ -1,6 +1,6 @@
 
 mbmdr <-
-function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjust=c("none","covariables","main effects","both"),first.model=NULL,list.models=NULL,use.logistf=TRUE,printStep1=FALSE,...)
+function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjust=c("none","covariates","main effects","both"),first.model=NULL,list.models=NULL,use.logistf=TRUE,printStep1=FALSE,...)
 {
  called <- match.call()
  adjust <- match.arg(adjust)
@@ -65,7 +65,7 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
  OffsetFit <- function(resp,datos,covar,adjust,...){
   switch(adjust,
     "none"={ return(NULL) },
-    "covariables"={ offsetgl <- glm(resp~.,data=data.frame(resp,covar),...) },
+    "covariates"={ offsetgl <- glm(resp~.,data=data.frame(resp,covar),...) },
     "main effects"={ offsetgl <- glm(resp~.,data=data.frame(resp,datos),...) },
     "both"={ offsetgl <- glm(resp~.,data=data.frame(resp,datos,covar),...) }
   )

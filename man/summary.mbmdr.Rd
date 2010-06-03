@@ -1,5 +1,5 @@
 \name{summary.mbmdr}
-\Rdversion{1.1}
+\Rdversion{2.1}
 \alias{summary.mbmdr}
 \alias{print.summary.mbmdr}
 
@@ -10,11 +10,11 @@
   A summary method for mbmdr.
 }
 \usage{
-  \method{summary}{mbmdr}(object,sig.level=0.05,...)
+ \method{summary}{mbmdr}(object,sig.level=0.05,...)
 }
 
 \arguments{
-  \item{object}{A mbmdr object returned from \code{mbmdr} function.}
+  \item{object}{An mbmdr object returned from \code{mbmdr} function.}
   \item{sig.level}{Threshold value for significant p-values.}
   \item{...}{Further arguments passed to or from other methods.}
 }

@@ -8,11 +8,11 @@
 
 \description{
   simSNP is a data.frame containing a bivariate outcome as in a case-control study, a continous covariate
-  and 10 simulated SNPs, where the interaction of SNPs 1 and 2 is associated with the outcome with penetrances 
-  as especified by model 1 in Ritchie et al.(2003) \cr
+  and 10 simulated SNPs. SNPs 1 and 2 have an interaction effect on the outcome. Penetrances 
+  are specified as in model 1 of Ritchie et al.(2003) \cr
 
-  simSNPcont is a data.frame containing a continous normal outcome and the 10 simulated SNPs,
-  where the interaction of SNPs 1 and 2 is associated with the outcome.
+  simSNPcont is a data.frame containing a continuous normally distributed outcome and 10 simulated SNPs,
+  where SNPs 1 and 2 have an interaction effect on the outcome.
 }
 
 \usage{
@@ -21,7 +21,7 @@
 	}
 
 \format{
-  simSNP is a data frame with 400 observations on the following 12 variables.\cr
+  simSNP is a data frame with 400 observations on the following 12 variables.
   
   \tabular{ll}{
 	  \code{Y}      \tab  Outcome: 1=case, 0=control  \cr

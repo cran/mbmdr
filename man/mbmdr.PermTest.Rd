@@ -15,23 +15,23 @@
 }
 
 \arguments{
-  \item{x}{A mbmdr object returned by \code{mbmdr} function.}
+  \item{x}{An mbmdr object returned by \code{mbmdr} function.}
   \item{n}{Number of permutations.}
-  \item{model}{Vector specifiying an interaction model or matrix wich rows are the interaction models 
-  	to perform the permutation test. If \code{model=NULL} (default), permutation test is performed for 
-  	the best model on \code{x} object.}
-  \item{sig.level}{Significance level for the confidence intervals of the permuted p-values, based
-  	on a normal approximation (Nettleton, 2000).\cr
+  \item{model}{Vector specifiying an interaction model or matrix with rows referring to interaction models 
+  	to be submitted for permutation testing. If \code{model=NULL} (default), permutation testing is performed on 
+  	the best model derived from the \code{x} object.}
+  \item{sig.level}{Significance level for the confidence intervals of the permutation based p-values, using
+  	a normal approximation (Nettleton, 2000).\cr
   	If \code{sig.level=1} (as default), confidence intervals are not computed. \cr
   	When the permutation p-value is too small with respect to \code{n}, the normal aproximation is not
   	appropiated and the C.I. are not provided (Nettleton, 2000).}
 }
 
 \details{
-	A permutation test is performed for each specified model by permuting the outcome variable an calling
+	A permutation testing is performed for each specified model by permuting the outcome variable and calling
   the \code{mbmdr} function.
 	The call to the \code{mbmdr} function is made by recovering the call from \code{mbmdr} object and replacing 
-	the outcome (by a permutation) and SNP data (by the subset of the specified model). All other arguments in the 
+	the outcome (by a permuted outcome vector) and SNP data (by the subset of the specified model). All other arguments in the 
 	initial	call to \code{mbmdr} are transfered to \code{mbmdr.PermTest}.
 }
 
@@ -77,18 +77,18 @@
   fit <- mbmdr(y=simSNP$Y,data=simSNP[,3:12],order=2,list.models=c(2,1),
              family=binomial(link=logit))
              
-  #Single model permutation test
+  # Single model permutation test
   mbmdr.PermTest(fit,100)
   
-  #Next stpes takes some time
+  # Next steps takes some time
   
-  #Permutation test for all models with MIN.P <= 0.05
-  #order <- 2
-  #models <- subset(fit$result, MIN.P <= 0.05, select = 1:order)
-  #mbmdr.PermTest(fit,100,models)
+  # Permutation test for all models with MIN.P <= 0.05
+  # order <- 2
+  # models <- subset(fit$result, MIN.P <= 0.05, select = 1:order)
+  # mbmdr.PermTest(fit,100,models)
   
-  #Permutation test and confidence interval for all models with MIN.P <= 0.05 
-  #mbmdr.PermTest(fit,100,models,sig.level=0.05)
+  # Permutation test and confidence interval for all models with MIN.P <= 0.05 
+  # mbmdr.PermTest(fit,100,models,sig.level=0.05)
 
 }
 
