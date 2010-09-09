@@ -98,6 +98,7 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
     tab <- table(resp,exposed,exclude=exclude)
     if(any(tab==0) || sum(dim(tab))<4){
       if(adjust=="none"){
+      	if(class(resp)=="factor") resp <- as.numeric(resp) - 1
         auxgl <- logistf(resp~.,data=data.frame(resp,exposed),pl=FALSE)
         return(auxgl)
       }
@@ -152,7 +153,7 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
   for (i in 1:n){
     part[,i+1] <- rep(rep(as.numeric(dimnames(tab)[[i]]),rep(prod(aux2[1:i]),length(dimnames(tab)[[i]]))),prod(aux1[(i+1):(n+1)]))
   }
-  reg <- apply(part,1,function(x,...) return(GenotipReg(x[1:(n+1)],...)))
+  reg <- apply(part,1,function(x,...) return(GenotipReg(x[1:(n+1)],...)),...)
   part[,(n+2):(n+5)] <- t(reg)
   return(part)
  }
