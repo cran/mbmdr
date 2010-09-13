@@ -164,9 +164,11 @@
   \tabular{lll}{
     \code{SNP1...SNPx}\tab  \tab Names of snps in interaction.                                    \cr
     \code{NH   }      \tab  \tab Number of significant High risk genotypes in the interaction.    \cr
+    \code{betaH}      \tab  \tab Regresion coeficient in step2 for High risk exposition.          \cr
     \code{WH   }      \tab  \tab Wald statistic for High risk category.                           \cr
     \code{PH   }      \tab  \tab P-value of the Wald test for the High risk category.             \cr
     \code{NL   }      \tab  \tab Number of significant Low risk genotypes in the interaction.     \cr
+    \code{betaL}      \tab  \tab Regresion coeficient in step2 for Low risk exposition.           \cr
     \code{WL   }      \tab  \tab Wald statistic for Low risk category.                            \cr
     \code{PL   }      \tab  \tab P-value of the Wald test for the Low risk category.              \cr
     \code{MIN.P}      \tab  \tab Minimun p-value (\code{min(PH,PL)}) for the interaction model.   \cr

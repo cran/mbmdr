@@ -217,9 +217,11 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
      WL <- l.regout[3]^2
      PL <- l.regout[4]
 ##     PL <- ifelse(!is.null(null.dist), EmpiricalPval(null.dist,NL,WL,maf), NA)
+     betaL <- l.regout[1]
    }
    else{
      NL <- 0
+     betaL <- NA
      WL <- NA
      PL <- NA
    }
@@ -239,9 +241,11 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
      WH <- h.regout[3]^2
      PH <- h.regout[4]
 ##     PH <- ifelse(!is.null(null.dist), EmpiricalPval(null.dist,NH,WH,maf), NA)
+     betaH <- h.regout[1]
    }
    else{
      NH <- 0
+     betaH <- NA
      WH <- NA
      PH <- NA
    }
@@ -251,11 +255,11 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
 ##     aux <- c(PH,PL)
 ##     ADJ.P <- ifelse(is.null(null.dist), NA, 2*min(aux[!is.na(aux)]))
      if(is.null(output)){
-       result <- rbind(result,data.frame(t(colnames(data[,model])),as.numeric(NH),WH,PH,as.numeric(NL),WL,PL,MIN.P,row.names=NULL))
+       result <- rbind(result,data.frame(t(colnames(data[,model])),as.numeric(NH),betaH,WH,PH,as.numeric(NL),betaL,WL,PL,MIN.P,row.names=NULL))
 ##       result <- rbind(result,data.frame(t(colnames(data[,model])),as.numeric(NH),WH,PH,as.numeric(NL),WL,PL,ADJ.P,row.names=NULL))
      }
      else
-       write.table(data.frame(t(colnames(data[,model])),as.numeric(NH),WH,PH,as.numeric(NL),WL,PL,MIN.P,row.names=NULL),file=output,append=TRUE,row.names=FALSE,col.names=FALSE,sep=";")
+       write.table(data.frame(t(colnames(data[,model])),as.numeric(NH),betaH,WH,PH,as.numeric(NL),betaL,WL,PL,MIN.P,row.names=NULL),file=output,append=TRUE,row.names=FALSE,col.names=FALSE,sep=";")
 ##       write.table(data.frame(t(colnames(data[,model])),as.numeric(NH),WH,PH,as.numeric(NL),WL,PL,ADJ.P,row.names=NULL),file=output,append=TRUE,row.names=FALSE,col.names=FALSE,sep=";")
    }
 
@@ -266,7 +270,7 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
  }
  
 ## if(is.null(output) & nrow(result)>0) colnames(result) <- c(paste("SNP",1:order,sep=""),"NH","WH","PH","NL","WL","PL","ADJ.P")
- if(is.null(output) & nrow(result)>0) colnames(result) <- c(paste("SNP",1:order,sep=""),"NH","WH","PH","NL","WL","PL","MIN.P")
+ if(is.null(output) & nrow(result)>0) colnames(result) <- c(paste("SNP",1:order,sep=""),"NH","betaH","WH","PH","NL","betaL","WL","PL","MIN.P")
  if(!is.null(output)) result <- paste(c("file: ",output),collapse="")
  object <- list()
  object$call <- called
