@@ -267,6 +267,8 @@ function(y,data,order,covar=NULL,exclude=NA,risk.threshold=0.1,output=NULL,adjus
    models <- NextModel(models)
    if(is.null(models)) break
    model <- models[[1]]
+   if(adjust=="main effects" | adjust=="both") 
+   	  offsetfit <- OffsetFit(resp=y,datos=data[,model],covar=covar,adjust=adjust,...)
  }
  
 ## if(is.null(output) & nrow(result)>0) colnames(result) <- c(paste("SNP",1:order,sep=""),"NH","WH","PH","NL","WL","PL","ADJ.P")
