@@ -1,5 +1,5 @@
-
-.First.lib <- function(...){
-    mbmdr.ver <- read.dcf(file=system.file("DESCRIPTION", package="mbmdr"), fields="Version")
-    cat("\n mbmdr ",mbmdr.ver,"\n\n")
+.onAttach <- function(libname, pkgname) {
+    ver <- read.dcf(file=system.file("DESCRIPTION", package=pkgname),
+                      fields="Version")
+    packageStartupMessage(paste(pkgname, ver))
 }
